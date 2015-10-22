@@ -29,18 +29,7 @@ int main() {
 
     std::cout << "Starting simulation..." << std::endl;
 
-    /*
-     * The structure for Army is:
-     *
-     *     max_num_components
-     *     max_health_points
-     *     damage
-     *     damage_chance
-     *     living_components
-     *     current_health_points
-     *
-     * where only the last two are not consts, and everything is an int
-     */
+    // declare the two armies
     army::Army elves {elf_army_size, ELF_HEALTH, ELF_DAMAGE, ELF_DAMAGE_CHANCE, elf_army_size, ELF_HEALTH};
     army::Army dragons {dragon_army_size, DRAGON_HEALTH, DRAGON_DAMAGE, DRAGON_DAMAGE_CHANCE, dragon_army_size, DRAGON_HEALTH};
 
@@ -72,7 +61,7 @@ int main() {
                 if (roll_attack <= elves.damage_chance)
                     dragons.current_health_points -= elves.damage;
 
-                // if the dragon kill the elf, reset life and declare deceased
+                // if the elf kill the dragon, reset life and declare deceased
                 if (dragons.current_health_points <= 0) {
                     dragons.living_components--;
                     dragons.current_health_points = DRAGON_HEALTH;
